@@ -134,7 +134,7 @@ If you receive an error message, check that:
 
 ## Version History
 
-### 1.0.0 (2024-05)
+### 1.0.0 (2025-03)
 - Initial release
 - Support for multiple Gemini models
 - Custom editor selection
