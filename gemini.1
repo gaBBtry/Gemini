@@ -1,0 +1,146 @@
+.TH GEMINI 1 "Mai 2024" "Version 1.0" "Commandes Utilisateur"
+.SH NOM
+gemini \- interface en ligne de commande pour l'API Google Gemini
+.SH SYNOPSIS
+.B gemini
+[
+.B \-h
+|
+.B \-\-help
+] [
+.B \-m
+|
+.B \-\-model
+.I MODEL
+] [
+.B \-l
+|
+.B \-\-list-models
+] [
+.B \-e
+|
+.B \-\-editor
+.I EDITOR
+] [
+.B \-v
+|
+.B \-\-verbose
+]
+.SH DESCRIPTION
+.B gemini
+est un outil en ligne de commande qui facilite l'interaction avec l'API Google Gemini. Il ouvre un éditeur de texte où vous pouvez rédiger une demande (prompt), puis envoie cette demande à l'API Gemini et affiche la réponse dans le même éditeur.
+.SH PRÉREQUIS
+.TP
+.B \- Une clé API Google (variable d'environnement GOOGLE_API_KEY)
+.TP
+.B \- curl
+.TP
+.B \- jq
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Afficher le message d'aide et quitter
+.TP
+.B \-m, \-\-model MODEL
+Spécifier le modèle Gemini à utiliser
+.TP
+.B \-l, \-\-list-models
+Lister tous les modèles disponibles
+.TP
+.B \-e, \-\-editor EDITOR
+Spécifier l'éditeur de texte à utiliser
+.TP
+.B \-v, \-\-verbose
+Afficher des messages d'état détaillés
+.SH MODÈLES DISPONIBLES
+.TP
+.B gemini-1.5-pro
+.TP
+.B gemini-1.5-flash
+.TP
+.B gemini-2.5-pro-exp-03-25 (par défaut)
+.TP
+.B gemini-pro
+.TP
+.B gemini-pro-vision
+.SH VARIABLES D'ENVIRONNEMENT
+.TP
+.B GOOGLE_API_KEY
+(obligatoire) : Votre clé API Google pour accéder à Gemini
+.TP
+.B EDITOR
+(optionnel) : L'éditeur de texte à utiliser (par défaut: nano) si non spécifié avec l'option \-e
+.SH FONCTIONNEMENT
+.IP 1. 4
+Vérifie que la variable d'environnement GOOGLE_API_KEY est définie
+.IP 2. 4
+Crée un fichier temporaire
+.IP 3. 4
+Ouvre votre éditeur de texte pour que vous puissiez saisir votre prompt
+.IP 4. 4
+Envoie votre prompt à l'API Google Gemini
+.IP 5. 4
+Ajoute la réponse au fichier, après votre prompt
+.IP 6. 4
+Rouvre l'éditeur pour afficher la réponse
+.IP 7. 4
+Supprime le fichier temporaire une fois que vous avez fermé l'éditeur
+.SH EXEMPLES
+.TP
+.B Utilisation de base:
+.nf
+gemini
+.fi
+.TP
+.B Avec un éditeur spécifique:
+.nf
+gemini -e vim
+.fi
+.TP
+.B Utilisation d'un modèle différent:
+.nf
+gemini -m gemini-1.5-pro
+.fi
+.TP
+.B Mode verbeux:
+.nf
+gemini -v
+.fi
+.TP
+.B Lister les modèles disponibles:
+.nf
+gemini -l
+.fi
+.SH NOTES
+.IP \(bu 2
+Le fichier temporaire est créé dans le répertoire /tmp/
+.IP \(bu 2
+Le script affiche des messages de confirmation quand le mode verbeux est activé
+.IP \(bu 2
+Si aucun texte n'est saisi dans l'éditeur, le script se termine sans appeler l'API
+.SH DÉPANNAGE
+Si vous recevez un message d'erreur, vérifiez que:
+.IP \(bu 2
+Votre clé API est correctement configurée
+.IP \(bu 2
+Vous avez une connexion internet fonctionnelle
+.SH INSTALLATION
+Pour installer cette page de manuel:
+.PP
+.nf
+sudo cp gemini.1 /usr/local/share/man/man1/
+sudo mandb
+.fi
+.PP
+Vous pourrez alors accéder à la documentation avec:
+.PP
+.nf
+man gemini
+.fi
+.SH AUTEUR
+github.com/gaBBtry
+.SH VOIR AUSSI
+.BR nano (1),
+.BR vim (1),
+.BR curl (1),
+.BR jq (1) 
